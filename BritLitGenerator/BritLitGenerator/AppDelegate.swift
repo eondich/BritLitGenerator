@@ -15,13 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var testStory: StoryBits?
     
+    var noStoryboardViewController: NoStoryboardViewController?
+    var addDataViewController: AddDataViewController?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let startupViewController = NoStoryboardViewController()
-        
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = startupViewController
-        self.window?.makeKeyAndVisible()
         
         //        Load data about stories that have already been created.  Used for testing
         //        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
@@ -29,6 +27,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        if let data = NSData(contentsOfURL:storyURL) {
         //            testStory = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? StoryBits
         //        }
+        
+        // Trying to set up tab bar root view controller
+        
+        self.noStoryboardViewController = NoStoryboardViewController()
+        let mainNavigationController = UINavigationController(rootViewController: self.noStoryboardViewController!)
+        mainNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Downloads, tag: 0)
+        
+        self.addDataViewController = AddDataViewController()
+        self.addDataViewController?.typeNo = 1
+        let addNavigationController = UINavigationController(rootViewController: self.addDataViewController!)
+        addNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Contacts, tag: 0)
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [mainNavigationController, addNavigationController]
+        
+        let startupViewController = tabBarController
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = startupViewController
+        self.window?.makeKeyAndVisible()
         
         return true
     }

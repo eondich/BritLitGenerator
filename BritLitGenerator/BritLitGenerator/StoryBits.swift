@@ -48,8 +48,9 @@ class StoryBits: NSObject, NSCoding {
     var conclusion: String!
     var index: Int!
     
+    // MARK: Init
     // Default init
-    // Default values are included for each of the lists in case they don't have values stored.  When a random story is created, there needs to be at least one string in each list.
+    // Default values are included for each of the lists in case they don't have values stored.  This is most useful for debugging.
     
     override init() {
         self.titlePt1 = ["[TITLE1]"]
@@ -69,6 +70,7 @@ class StoryBits: NSObject, NSCoding {
         self.conclusions = ["[CONCLUSION]"]
     }
     
+    // MARK: NSCoding
     // Init to load stored story pieces
     required init(coder aDecoder: NSCoder) {
         self.titlePt1 = aDecoder.decodeObjectForKey("title1") as! [String]
@@ -106,7 +108,8 @@ class StoryBits: NSObject, NSCoding {
         aCoder.encodeObject(dramas, forKey: "dramas")
         aCoder.encodeObject(conclusions, forKey: "conclusions")
     }
-    
+
+    // MARK: Other methods
     // Uses a random number generator to get an index for each list of story pieces then sets the corresponding story piece value to the string at that index
     func getStory() {
         index = Int(arc4random_uniform(UInt32(titlePt1.count)))
