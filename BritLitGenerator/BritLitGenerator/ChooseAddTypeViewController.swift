@@ -5,6 +5,7 @@
 //  Created by Elena Ondich on 1/22/16.
 //  Copyright © 2016 Elena Ondich. All rights reserved.
 //
+// Allows the user to select the kind of data (parts of a story) they want to add or delete
 
 import UIKit
 
@@ -18,9 +19,9 @@ class ChooseAddTypeViewController: UIViewController, UITableViewDelegate, UITabl
     var tableView: UITableView!
     var delegate: ChooseTypeControllerDelegate?
     
+    // MARK: Init
     override func viewDidLoad() {
-        // To do: Fix back button
-        //      - Aesthetics?
+
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
@@ -55,18 +56,11 @@ class ChooseAddTypeViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-//    func showInViewController(vc: UIViewController, button: UIButton) {
-//        vc.presentViewController(self, animated: true, completion: nil)
-//        let presentationController = self.popoverPresentationController
-//        presentationController?.sourceView = button
-//        presentationController?.sourceRect = button.bounds
-//    }
     
-    
-    
+   // MARK: Table management
     // I want there to be as many rows/cells as there are cell labels in my list
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return labels.count
+        return self.labels.count
     }
     
     // Cell labels are taken from the labels list
@@ -82,7 +76,7 @@ class ChooseAddTypeViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.dismissViewControllerAnimated(true, completion: nil)
         if let _ = self.delegate {
-            self.delegate!.typeWasSelected(indexPath.row + 1, newTypeText: self.labels[indexPath.row])
+            self.delegate!.typeWasSelected(indexPath.row, newTypeText: self.labels[indexPath.row])
         }
     }
     

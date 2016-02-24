@@ -11,8 +11,8 @@
 		F3C55B651C5821A000E4FBC4 /* StoryBits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B641C5821A000E4FBC4 /* StoryBits.swift */; };
 		F3C55B671C5821BF00E4FBC4 /* AddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */; };
 		F3C55B691C5821E600E4FBC4 /* ChooseAddTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */; };
+		F3CDB6391C7C46AA00D1FFC5 /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CDB6381C7C46AA00D1FFC5 /* DeleteViewController.swift */; };
 		F3F52E341C485FD50072A857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F52E331C485FD50072A857 /* AppDelegate.swift */; };
-		F3F52E361C485FD50072A857 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F52E351C485FD50072A857 /* ViewController.swift */; };
 		F3F52E391C485FD50072A857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F52E371C485FD50072A857 /* Main.storyboard */; };
 		F3F52E3B1C485FD50072A857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F52E3A1C485FD50072A857 /* Assets.xcassets */; };
 		F3F52E3E1C485FD50072A857 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F52E3C1C485FD50072A857 /* LaunchScreen.storyboard */; };
@@ -34,9 +34,9 @@
 		F3C55B641C5821A000E4FBC4 /* StoryBits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBits.swift; sourceTree = "<group>"; };
 		F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDataViewController.swift; sourceTree = "<group>"; };
 		F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAddTypeViewController.swift; sourceTree = "<group>"; };
+		F3CDB6381C7C46AA00D1FFC5 /* DeleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
 		F3F52E301C485FD50072A857 /* BritLitGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BritLitGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F52E331C485FD50072A857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3F52E351C485FD50072A857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F3F52E381C485FD50072A857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3F52E3A1C485FD50072A857 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F52E3D1C485FD50072A857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,11 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				F3F52E331C485FD50072A857 /* AppDelegate.swift */,
+				F3CDB6381C7C46AA00D1FFC5 /* DeleteViewController.swift */,
 				F3C55B621C58218400E4FBC4 /* NoStoryboardViewController.swift */,
 				F3C55B641C5821A000E4FBC4 /* StoryBits.swift */,
 				F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */,
 				F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */,
-				F3F52E351C485FD50072A857 /* ViewController.swift */,
 				F3F52E371C485FD50072A857 /* Main.storyboard */,
 				F3F52E3A1C485FD50072A857 /* Assets.xcassets */,
 				F3F52E3C1C485FD50072A857 /* LaunchScreen.storyboard */,
@@ -209,8 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F52E361C485FD50072A857 /* ViewController.swift in Sources */,
 				F3C55B691C5821E600E4FBC4 /* ChooseAddTypeViewController.swift in Sources */,
+				F3CDB6391C7C46AA00D1FFC5 /* DeleteViewController.swift in Sources */,
 				F3C55B651C5821A000E4FBC4 /* StoryBits.swift in Sources */,
 				F3C55B631C58218400E4FBC4 /* NoStoryboardViewController.swift in Sources */,
 				F3F52E341C485FD50072A857 /* AppDelegate.swift in Sources */,

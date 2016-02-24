@@ -5,12 +5,12 @@
 //  Created by Elena Ondich on 1/12/16.
 //  Copyright © 2016 Elena Ondich. All rights reserved.
 //
+// In this view controller, the user adds text to the lists that are used to generate random stories
 
 import UIKit
 
 class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, ChooseTypeControllerDelegate {
-    // To do: Add a "back" button that goes back to the table of story piece types
-    //      - Make more aesthetically pleasing
+    // To do: Make more aesthetically pleasing
     //      - Possibly make save() more efficient
     var mainText: UITextView!
     var titleText: UIButton!
@@ -23,7 +23,7 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Add story bits"
+        self.navigationItem.title = "Make your own story"
         
         // Making sure that newText and typeNo have values-- at this point, every time I create an AddDataViewController I assign values to them, but I don't want to risk them being nil
         if newText == nil {
@@ -35,9 +35,9 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         }
         
         // Set view defaults
-        let backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        let backgroundColor = UIColor(red: 0.87, green: 0.89, blue: 0.93, alpha: 1.0)
         let buttonColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
-        let textColor = UIColor(red: 0.5, green: 0.3, blue: 0.6, alpha: 1.0)
+        let textColor = UIColor(red: 0.4, green: 0.75, blue: 0.55, alpha: 1.0)
         let borderColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
         self.view.backgroundColor = backgroundColor
         let font = UIFont.systemFontOfSize(14.0)
@@ -50,6 +50,8 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.mainText.textColor = textColor
         self.mainText.layer.borderColor = borderColor.CGColor
         self.mainText.layer.borderWidth = 1
+        self.mainText.autocapitalizationType = .None
+        self.automaticallyAdjustsScrollViewInsets = false
         //self.mainText.delegate = self
         self.view.addSubview(mainText)
         
@@ -164,7 +166,13 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         case 2:
             self.titleText.setTitle("For example: Harry Potter and the (Your Entry)", forState: .Normal)
         case 6:
-            self.titleText.setTitle("Where does this story take place?  Once upon a time...", forState: .Normal)
+            self.titleText.setTitle("Where does this story take place?", forState: .Normal)
+        case 7:
+            self.titleText.setTitle("Who/what is your hero?", forState: .Normal)
+        case 9:
+            self.titleText.setTitle("Who/what is your sidekick?", forState: .Normal)
+        case 11:
+            self.titleText.setTitle("Who/what is your villain?", forState: .Normal)
         default:
             self.titleText.setTitle(newText, forState: .Normal)
         }
@@ -172,7 +180,7 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     // Added to conform to the ChooseTypeDelegate protocol.  Performed when a cell in the popover view is selected
     func typeWasSelected(newTypeNo: Int, newTypeText: String) {
-        self.typeNo = newTypeNo
+        self.typeNo = newTypeNo + 1
         self.newText = newTypeText
         setText()
     }

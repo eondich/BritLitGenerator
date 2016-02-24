@@ -5,6 +5,7 @@
 //  Created by Elena Ondich on 1/6/16 with help from Jeffrey Ondich.
 //  Copyright © 2016 Elena Ondich. All rights reserved.
 //
+// This is the main view controller, where stories are randomly generated and displayed
 
 import UIKit
 
@@ -12,9 +13,9 @@ class NoStoryboardViewController: UIViewController {
     // To do: Make it at all pretty
     //      - There seems to be a bug where the styles are showing up wrong.  Will investigate.
     var storyTitle: UITextView!
-    var storyAuthor: UITextView!
+//    var storyAuthor: UITextView!
     var storyPlot: UITextView!
-    var style: UITextView!
+//    var style: UITextView!
     var button: UIButton!
     var index: Int!
     var dataButton: UIButton!
@@ -29,16 +30,14 @@ class NoStoryboardViewController: UIViewController {
         self.navigationItem.title = "Your story"
         self.view.backgroundColor = UIColor.whiteColor()
         let font = UIFont.systemFontOfSize(14.0)
+        let titleColor = UIColor(red: 0.48, green: 0.48, blue: 0.72, alpha: 1.0)
+        let fontColor = UIColor(red: 0.28, green: 0.18, blue: 0.26, alpha: 1.0)
         let backgroundColor = UIColor(red: 0.55, green: 0.8, blue: 0.45, alpha: 1.0)
         let buttonColor = UIColor(red: 0.6, green: 0.7, blue: 0.9, alpha: 1.0)
         
         // Create a new StoryBits object and load the lists of options for pieces of the story
         story = StoryBits()
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
-        if let data = NSData(contentsOfURL:storyURL) {
-            story = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! StoryBits
-        }
+        loadData()
         
         // Get an initial random story
         story.getStory()
@@ -49,35 +48,40 @@ class NoStoryboardViewController: UIViewController {
         self.storyTitle.backgroundColor = backgroundColor
         self.storyTitle.textColor = UIColor.whiteColor()
         self.storyTitle.font = UIFont.systemFontOfSize(18.0)
+        self.storyTitle.textColor = titleColor
         self.storyTitle.text = "\(story.title1) \(story.title2)"
         self.storyTitle.textAlignment = .Center
         self.storyTitle.editable = false
+        self.automaticallyAdjustsScrollViewInsets = false
         self.view.addSubview(self.storyTitle)
         
         // Author
-        self.storyAuthor = UITextView()
-        self.storyAuthor.translatesAutoresizingMaskIntoConstraints = false
-        self.storyAuthor.backgroundColor = backgroundColor
-        self.storyAuthor.font = font
-        self.storyAuthor.text = "Written by \(story.author)"
-        self.storyAuthor.editable = false
-        self.view.addSubview(self.storyAuthor)
-        
-        // Style
-        self.style = UITextView()
-        self.style.translatesAutoresizingMaskIntoConstraints = false
-        self.style.backgroundColor = backgroundColor
-        self.style.font = font
-        self.style.text = "Told in \(story.style1) chock full of \(story.style2)"
-        self.style.editable = false
-        self.view.addSubview(style)
+//        self.storyAuthor = UITextView()
+//        self.storyAuthor.translatesAutoresizingMaskIntoConstraints = false
+//        self.storyAuthor.backgroundColor = backgroundColor
+//        self.storyAuthor.font = font
+//        self.storyAuthor.textColor = fontColor
+//        self.storyAuthor.text = "Written by \(story.author)"
+//        self.storyAuthor.editable = false
+//        self.view.addSubview(self.storyAuthor)
+//        
+//        // Style
+//        self.style = UITextView()
+//        self.style.translatesAutoresizingMaskIntoConstraints = false
+//        self.style.backgroundColor = backgroundColor
+//        self.style.font = font
+//        self.style.textColor = fontColor
+//        self.style.text = "Told in \(story.stl1) chock full of \(story.stl2)"
+//        self.style.editable = false
+//        self.view.addSubview(style)
         
         // Plot
         self.storyPlot = UITextView()
         self.storyPlot.translatesAutoresizingMaskIntoConstraints = false
         self.storyPlot.backgroundColor = backgroundColor
         self.storyPlot.font = font
-        self.storyPlot.text = "Once upon a time \(story.setting) there was \(story.hero1) who \(story.hero2) accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1) who \(story.villain2) because of/over \(story.conflict) culminating in \(story.drama).  In the end, \(story.conclusion)."
+        self.storyPlot.textColor = fontColor
+        self.storyPlot.text = "Written by \(story.author)\r\rTold in \(story.stl1) chock full of \(story.stl2)\r\rOnce upon a time \(story.setting), there was \(story.hero1) who \(story.hero2), accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1), who \(story.villain2), because of \(story.conflict) culminating in \(story.drama).  In the end, \(story.conclusion)."
         self.storyPlot.editable = false
         self.view.addSubview(self.storyPlot)
         
@@ -109,8 +113,8 @@ class NoStoryboardViewController: UIViewController {
         
         // Set up constraints
         let views: [String:AnyObject] = ["title":self.storyTitle,
-            "author":self.storyAuthor,
-            "style":self.style,
+//            "author":self.storyAuthor,
+//            "style":self.style,
             "plot":self.storyPlot,
             "button":self.button,
             "leftButtonPad":leftButtonPad,
@@ -118,20 +122,21 @@ class NoStoryboardViewController: UIViewController {
             "topLayoutGuide":self.topLayoutGuide,
             "bottomLayoutGuide":self.bottomLayoutGuide]
         
-        let metrics: [String:Float] = ["margin":20, "titleHeight":40, "authorHeight":30, "styleHeight":30]
+        let metrics: [String:Float] = ["margin":20, "titleHeight":43, "authorHeight":30, "styleHeight":43]
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[title]-margin-|", options: [], metrics: metrics, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[author]-margin-|", options: [], metrics: metrics, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[style]-margin-|", options: [], metrics: metrics, views: views))
+//        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[author]-margin-|", options: [], metrics: metrics, views: views))
+//        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[style]-margin-|", options: [], metrics: metrics, views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[plot]-margin-|", options: [], metrics: metrics, views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[leftButtonPad][button][rightButtonPad(==leftButtonPad)]|", options: [], metrics: metrics, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topLayoutGuide]-margin-[title(titleHeight)][author(authorHeight)][style(styleHeight)][plot]-margin-[button]-margin-[bottomLayoutGuide]", options: [], metrics: metrics, views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topLayoutGuide]-margin-[title(titleHeight)][plot]-margin-[button]-margin-[bottomLayoutGuide]", options: [], metrics: metrics, views: views))
     }
     
     // MARK: Button handling
     // Run when the button to get a new story is pressed
     func handleHitMeButton() {
         // Get a random number that is between 0 and the length of the buttonOps list and then use that number to choose the new text for the button from buttonOps
+        loadData()
         index = Int(arc4random_uniform(UInt32(buttonOps.count)))
         self.button.setTitle(buttonOps[index], forState: UIControlState.Normal)
         
@@ -139,9 +144,19 @@ class NoStoryboardViewController: UIViewController {
         story.getStory()
         // Populate the title, author, style, and plot boxes with the values that were randomly chosen by getStory()
         storyTitle.text = "\(story.title1) \(story.title2)"
-        storyAuthor.text = "Written by \(story.author)"
-        style.text = "Told in \(story.style1) chock full of \(story.style2)"
-        storyPlot.text = "Once upon a time \(story.setting) there was \(story.hero1) who \(story.hero2) accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1) who \(story.villain2) because of/over \(story.conflict) culminating in \(story.drama).  In the end, \(story.conclusion)."
-    }    
+//        storyAuthor.text = "Written by \(story.author)"
+//        style.text = "Told in \(story.stl1) chock full of \(story.stl2)"
+        storyPlot.text = "Written by \(story.author)\r\rTold in \(story.stl1) chock full of \(story.stl2)\r\rOnce upon a time \(story.setting), there was \(story.hero1) who \(story.hero2), accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1), who \(story.villain2), because of \(story.conflict) culminating in \(story.drama).  In the end, \(story.conclusion)."
+    }
+    
+    // MARK: NSCoding
+    // Loads story data
+    func loadData() {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        let storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
+        if let data = NSData(contentsOfURL:storyURL) {
+            story = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! StoryBits
+        }
+    }
     
 }

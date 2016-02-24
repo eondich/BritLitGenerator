@@ -6,6 +6,12 @@
 //  Copyright © 2015 Elena Ondich. All rights reserved.
 //
 
+// TO DO:
+// Clean up code- make variable names better, comment everything, make code more elegant where possible, delete extraneous stuff, etc
+// Color scheme
+// Word choice
+// Built-in data
+
 import UIKit
 
 @UIApplicationMain
@@ -17,31 +23,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var noStoryboardViewController: NoStoryboardViewController?
     var addDataViewController: AddDataViewController?
+    var deleteViewController: DeleteViewController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // Set up view controllers that will appear in tabs
         
-        //        Load data about stories that have already been created.  Used for testing
-        //        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        //        let storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
-        //        if let data = NSData(contentsOfURL:storyURL) {
-        //            testStory = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? StoryBits
-        //        }
-        
-        // Trying to set up tab bar root view controller
-        
+        // Main view controller where random stories are generated
         self.noStoryboardViewController = NoStoryboardViewController()
         let mainNavigationController = UINavigationController(rootViewController: self.noStoryboardViewController!)
-        mainNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Downloads, tag: 0)
+        mainNavigationController.tabBarItem = UITabBarItem(title: "Get a story", image: UIImage(named: "dice"), tag: 0)
         
+        // View controller for adding data
         self.addDataViewController = AddDataViewController()
         self.addDataViewController?.typeNo = 1
         let addNavigationController = UINavigationController(rootViewController: self.addDataViewController!)
-        addNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Contacts, tag: 0)
+        addNavigationController.tabBarItem = UITabBarItem(title: "Make a story", image: UIImage(named: "pen"), tag: 0)
         
+        // View controller for deleting data
+        self.deleteViewController = DeleteViewController()
+        let deleteNavigationController = UINavigationController(rootViewController: self.deleteViewController!)
+        deleteNavigationController.tabBarItem = UITabBarItem(title: "Delete data", image: UIImage(named: "delete"), tag: 0)
+        
+        // Set up tab bar controller and set as default
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mainNavigationController, addNavigationController]
-        
+        tabBarController.viewControllers = [mainNavigationController, addNavigationController, deleteNavigationController]
         let startupViewController = tabBarController
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -66,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
     }
     
+    // Saves story data to a plist
     func saveStory(story: StoryBits) {
         let data = NSKeyedArchiver.archivedDataWithRootObject(story)
         

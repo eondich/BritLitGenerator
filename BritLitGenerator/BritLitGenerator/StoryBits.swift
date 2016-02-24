@@ -6,6 +6,7 @@
 //  Copyright © 2016 Elena Ondich. All rights reserved.
 //
 // StoryBits has lists of possible values for parts of a story as well as one string to correspond with each list.  I'll probably split this up into two classes in the future.
+// This class stores data that is then used to generate a random story
 
 import UIKit
 
