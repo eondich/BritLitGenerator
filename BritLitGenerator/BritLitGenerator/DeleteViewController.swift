@@ -16,22 +16,27 @@ class DeleteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tableView: UITableView!
     var backgroundColor: UIColor!
     var typeNo: Int!
+    var storyLabels: [String]!
     
     // MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.storyPieces = StoryBits()
         
         // deleteOptions is the list of story pieces that can currently be deleted.
         loadData()
-        deleteOptions = self.storyPieces.titlePt1
+        
+        deleteOptions = (self.storyPieces.dict.valueForKeyPath("title1") as? [String])!
         self.typeNo = 0
+        
+        self.storyLabels = ["title1", "title2", "author", "style1", "style2", "setting", "hero1", "hero2", "comp1", "comp2", "vill1", "vill2", "conflict", "drama", "conclusion"]
         
         // Basic variables/appearance setup
         self.navigationItem.title = "Delete content"
         let borderColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
         let buttonColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         self.backgroundColor = UIColor(red: 0.87, green: 0.89, blue: 0.93, alpha: 1.0)
-        let textColor = UIColor(red: 0.4, green: 0.75, blue: 0.55, alpha: 1.0)
+        let textColor = UIColor(red: 0.75, green: 0.31, blue: 0.52, alpha: 1.0)
         self.view.backgroundColor = backgroundColor
         
         // A header box where you can select the kind of data you want to delete
@@ -116,48 +121,10 @@ class DeleteViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if (nullOps.contains(self.deleteOptions[0]) == false) {
             self.deleteOptions[0] = nullOps[self.typeNo]
         }
-        self.saveList()
+        self.storyPieces.dict.setValue(self.deleteOptions, forKey: self.storyLabels[typeNo])
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.saveStory(self.storyPieces)
         self.tableView.reloadData()
-    }
-    
-    // Updates a list in storyPieces to match deleteOptions based on typeNo (the type of data that can currently be deleted)
-    func saveList() {
-        switch self.typeNo {
-        case 0:
-            self.storyPieces.titlePt1 = self.deleteOptions
-        case 1:
-            self.storyPieces.titlePt2 = self.deleteOptions
-        case 2:
-            self.storyPieces.authors = self.deleteOptions
-        case 3:
-            self.storyPieces.style1 = self.deleteOptions
-        case 4:
-            self.storyPieces.style2 = self.deleteOptions
-        case 5:
-            self.storyPieces.settings = self.deleteOptions
-        case 6:
-            self.storyPieces.heroPt1 = self.deleteOptions
-        case 7:
-            self.storyPieces.heroPt2 = self.deleteOptions
-        case 8:
-            self.storyPieces.companionPt1 = self.deleteOptions
-        case 9:
-            self.storyPieces.companionPt2 = self.deleteOptions
-        case 10:
-            self.storyPieces.villainsPt1 = self.deleteOptions
-        case 11:
-            self.storyPieces.villainsPt2 = self.deleteOptions
-        case 12:
-            self.storyPieces.conflicts = self.deleteOptions
-        case 13:
-            self.storyPieces.dramas = self.deleteOptions
-        case 14:
-            self.storyPieces.conclusions = self.deleteOptions
-        default:
-            self.tableView.reloadData()
-        }
     }
     
     // MARK: Popover
@@ -192,49 +159,10 @@ class DeleteViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else {
             setText()
         }
-        self.updateCells()
+        self.deleteOptions = self.storyPieces.dict.valueForKeyPath(self.storyLabels[self.typeNo]) as! [String]
         self.tableView.reloadData()
     }
 
-    // Updates the table with data from the story file based on typeNo, which is set based on the data type selected in the popover
-    func updateCells() {
-        var finList: [String]!
-        switch self.typeNo {
-        case 0:
-            finList = self.storyPieces.titlePt1
-        case 1:
-            finList = self.storyPieces.titlePt2
-        case 2:
-            finList = self.storyPieces.authors
-        case 3:
-            finList = self.storyPieces.style1
-        case 4:
-            finList = self.storyPieces.style2
-        case 5:
-            finList = self.storyPieces.settings
-        case 6:
-            finList = self.storyPieces.heroPt1
-        case 7:
-            finList = self.storyPieces.heroPt2
-        case 8:
-            finList = self.storyPieces.companionPt1
-        case 9:
-            finList = self.storyPieces.companionPt2
-        case 10:
-            finList = self.storyPieces.villainsPt1
-        case 11:
-            finList = self.storyPieces.villainsPt2
-        case 12:
-            finList = self.storyPieces.conflicts
-        case 13:
-            finList = self.storyPieces.dramas
-        case 14:
-            finList = self.storyPieces.conclusions
-        default:
-            finList = []
-        }
-        self.deleteOptions = finList
-    }
     
     // Sets the text in the chooseTypeBox based on typeNo (the type of data you can delete at the moment)
     func setText() {
@@ -256,9 +184,15 @@ class DeleteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Loads data from story.plist
     func loadData() {
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
-        if let data = NSData(contentsOfURL:storyURL) {
-            self.storyPieces = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! StoryBits
+        var storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
+        if let dictionary = NSMutableDictionary(contentsOfURL: storyURL) {
+            self.storyPieces.dict = dictionary
+        }
+        else {
+            storyURL = NSBundle.mainBundle().URLForResource("story", withExtension: "plist")!
+            if let dictionary = NSMutableDictionary(contentsOfURL: storyURL) {
+                self.storyPieces.dict = dictionary
+            }
         }
     }
 

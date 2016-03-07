@@ -12,6 +12,7 @@
 		F3C55B671C5821BF00E4FBC4 /* AddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */; };
 		F3C55B691C5821E600E4FBC4 /* ChooseAddTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */; };
 		F3CDB6391C7C46AA00D1FFC5 /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CDB6381C7C46AA00D1FFC5 /* DeleteViewController.swift */; };
+		F3F232A91C7E5FEB002D94C0 /* story.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3F232A81C7E5FEB002D94C0 /* story.plist */; };
 		F3F52E341C485FD50072A857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F52E331C485FD50072A857 /* AppDelegate.swift */; };
 		F3F52E391C485FD50072A857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F52E371C485FD50072A857 /* Main.storyboard */; };
 		F3F52E3B1C485FD50072A857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F52E3A1C485FD50072A857 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDataViewController.swift; sourceTree = "<group>"; };
 		F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAddTypeViewController.swift; sourceTree = "<group>"; };
 		F3CDB6381C7C46AA00D1FFC5 /* DeleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
+		F3F232A81C7E5FEB002D94C0 /* story.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = story.plist; sourceTree = "<group>"; };
 		F3F52E301C485FD50072A857 /* BritLitGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BritLitGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F52E331C485FD50072A857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3F52E381C485FD50072A857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		F3F52E271C485FD50072A857 = {
 			isa = PBXGroup;
 			children = (
+				F3F232A81C7E5FEB002D94C0 /* story.plist */,
 				F3F52E321C485FD50072A857 /* BritLitGenerator */,
 				F3F52E471C485FD50072A857 /* BritLitGeneratorTests */,
 				F3F52E311C485FD50072A857 /* Products */,
@@ -191,6 +194,7 @@
 			files = (
 				F3F52E3E1C485FD50072A857 /* LaunchScreen.storyboard in Resources */,
 				F3F52E3B1C485FD50072A857 /* Assets.xcassets in Resources */,
+				F3F232A91C7E5FEB002D94C0 /* story.plist in Resources */,
 				F3F52E391C485FD50072A857 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

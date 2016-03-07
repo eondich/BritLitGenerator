@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // View controller for adding data
         self.addDataViewController = AddDataViewController()
-        self.addDataViewController?.typeNo = 1
+        self.addDataViewController?.typeNo = 0
         let addNavigationController = UINavigationController(rootViewController: self.addDataViewController!)
         addNavigationController.tabBarItem = UITabBarItem(title: "Make a story", image: UIImage(named: "pen"), tag: 0)
         
@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.deleteViewController = DeleteViewController()
         let deleteNavigationController = UINavigationController(rootViewController: self.deleteViewController!)
         deleteNavigationController.tabBarItem = UITabBarItem(title: "Delete data", image: UIImage(named: "delete"), tag: 0)
+        
+        // Images from https://icons8.com/
         
         // Set up tab bar controller and set as default
         let tabBarController = UITabBarController()
@@ -74,12 +76,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Saves story data to a plist
     func saveStory(story: StoryBits) {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(story)
+        let data = story.dict
         
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
         let storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
         
         data.writeToURL(storyURL, atomically: true)
+        
     }
     
     

@@ -11,13 +11,13 @@ import UIKit
 
 class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, ChooseTypeControllerDelegate {
     // To do: Make more aesthetically pleasing
-    //      - Possibly make save() more efficient
     var mainText: UITextView!
     var titleText: UIButton!
     var complete: UIButton!
-    var tempStory: StoryBits!
+    var story: StoryBits!
     var newText: String!
     var typeNo: Int!
+    var storyLabels: [String]!
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -27,17 +27,21 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         // Making sure that newText and typeNo have values-- at this point, every time I create an AddDataViewController I assign values to them, but I don't want to risk them being nil
         if newText == nil {
-            newText = "No data"
+            newText = "For example: (Your entry) Prince of Denmark"
         }
         
         if typeNo == nil {
             typeNo = 0
         }
         
+        self.story = StoryBits()
+        
+        self.storyLabels = ["title1", "title2", "author", "style1", "style2", "setting", "hero1", "hero2", "comp1", "comp2", "vill1", "vill2", "conflict", "drama", "conclusion"]
+        
         // Set view defaults
         let backgroundColor = UIColor(red: 0.87, green: 0.89, blue: 0.93, alpha: 1.0)
         let buttonColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
-        let textColor = UIColor(red: 0.4, green: 0.75, blue: 0.55, alpha: 1.0)
+        let textColor = UIColor(red: 0.75, green: 0.31, blue: 0.52, alpha: 1.0)// red: 0.4, green: 0.75, blue: 0.55, alpha: 1.0)
         let borderColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
         self.view.backgroundColor = backgroundColor
         let font = UIFont.systemFontOfSize(14.0)
@@ -52,7 +56,6 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.mainText.layer.borderWidth = 1
         self.mainText.autocapitalizationType = .None
         self.automaticallyAdjustsScrollViewInsets = false
-        //self.mainText.delegate = self
         self.view.addSubview(mainText)
         
         // Add a title to the page so the user knows what type of phrase they're adding to the system.  Mostly this can just be newText, but a couple of them need a bit more context so the user gets the grammar right
@@ -106,12 +109,15 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         // Load the story content options so they can be added to later
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
-        if let data = NSData(contentsOfURL:storyURL) {
-            tempStory = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? StoryBits
+        var storyURL = documentsURL.URLByAppendingPathComponent("story.plist")
+        if let dictionary = NSMutableDictionary(contentsOfURL: storyURL) {
+            self.story.dict = dictionary
         }
         else {
-            tempStory = StoryBits()
+            storyURL = NSBundle.mainBundle().URLForResource("story", withExtension: "plist")!
+            if let dictionary = NSMutableDictionary(contentsOfURL: storyURL) {
+                self.story.dict = dictionary
+            }
         }
         
     }
@@ -151,27 +157,27 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         return UIModalPresentationStyle.None
     }
     
-    // Executed when the cancel button is tapped- takes the user back to the main screen
-    func cancelQuit() {
-        let vc:NoStoryboardViewController = NoStoryboardViewController()
-        self.presentViewController(vc, animated: true, completion: nil)
-    }
+    // Defunct but here for future reference
+//    func cancelQuit() {
+//        let vc:NoStoryboardViewController = NoStoryboardViewController()
+//        self.presentViewController(vc, animated: true, completion: nil)
+//    }
     
     // MARK: Other methods
     // Sets the text in the title box
     func setText() {
         switch typeNo {
-        case 1:
+        case 0:
             self.titleText.setTitle("For example: (Your entry) Prince of Denmark", forState: .Normal)
-        case 2:
+        case 1:
             self.titleText.setTitle("For example: Harry Potter and the (Your Entry)", forState: .Normal)
-        case 6:
+        case 5:
             self.titleText.setTitle("Where does this story take place?", forState: .Normal)
-        case 7:
+        case 6:
             self.titleText.setTitle("Who/what is your hero?", forState: .Normal)
-        case 9:
+        case 8:
             self.titleText.setTitle("Who/what is your sidekick?", forState: .Normal)
-        case 11:
+        case 10:
             self.titleText.setTitle("Who/what is your villain?", forState: .Normal)
         default:
             self.titleText.setTitle(newText, forState: .Normal)
@@ -180,7 +186,7 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     // Added to conform to the ChooseTypeDelegate protocol.  Performed when a cell in the popover view is selected
     func typeWasSelected(newTypeNo: Int, newTypeText: String) {
-        self.typeNo = newTypeNo + 1
+        self.typeNo = newTypeNo
         self.newText = newTypeText
         setText()
     }
@@ -189,118 +195,18 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
     // Either the default entry is overwritten or the text is appended to the list
     // I have some ideas for making this more compact, I just haven't messed around with it yet.
     func save() {
-        switch self.typeNo {
-        case 1:
-            if tempStory.titlePt1[0] == "[TITLE1]" {
-                tempStory.titlePt1[0] = mainText.text
-            }
-            else {
-                tempStory.titlePt1.append(mainText.text)
-            }
-        case 2:
-            if tempStory.titlePt2[0] == "[TITLE2]" {
-                tempStory.titlePt2[0] = mainText.text
-            }
-            else {
-                tempStory.titlePt2.append(mainText.text)
-            }
-        case 3:
-            if tempStory.authors[0] == "[AUTHORS]" {
-                tempStory.authors[0] = mainText.text
-            }
-            else {
-                tempStory.authors.append(mainText.text)
-            }
-        case 4:
-            if tempStory.style1[0] == "[STYLE1]" {
-                tempStory.style1[0] = mainText.text
-            }
-            else {
-                tempStory.style1.append(mainText.text)
-            }
-        case 5:
-            if tempStory.style2[0] == "[STYLE2]" {
-                tempStory.style2[0] = mainText.text
-            }
-            else {
-                tempStory.style2.append(mainText.text)
-            }
-        case 6:
-            if tempStory.settings[0] == "[SETTINGS]" {
-                tempStory.settings[0] = mainText.text
-            }
-            else {
-                tempStory.settings.append(mainText.text)
-            }
-        case 7:
-            if tempStory.heroPt1[0] == "[HERO1]" {
-                tempStory.heroPt1[0] = mainText.text
-            }
-            else {
-                tempStory.heroPt1.append(mainText.text)
-            }
-        case 8:
-            if tempStory.heroPt2[0] == "[HERO2]" {
-                tempStory.heroPt2[0] = mainText.text
-            }
-            else {
-                tempStory.heroPt2.append(mainText.text)
-            }
-        case 9:
-            if tempStory.companionPt1[0] == "[COMP1]" {
-                tempStory.companionPt1[0] = mainText.text
-            }
-            else {
-                tempStory.companionPt1.append(mainText.text)
-            }
-        case 10:
-            if tempStory.companionPt2[0] == "[COMP2]" {
-                tempStory.companionPt2[0] = mainText.text
-            }
-            else {
-                tempStory.companionPt2.append(mainText.text)
-            }
-        case 11:
-            if tempStory.villainsPt1[0] == "[VILL1]" {
-                tempStory.villainsPt1[0] = mainText.text
-            }
-            else {
-                tempStory.villainsPt1.append(mainText.text)
-            }
-        case 12:
-            if tempStory.villainsPt2[0] == "[VILL2]" {
-                tempStory.villainsPt2[0] = mainText.text
-            }
-            else {
-                tempStory.villainsPt2.append(mainText.text)
-            }
-        case 13:
-            if tempStory.conflicts[0] == "[CONFLICT]" {
-                tempStory.conflicts[0] = mainText.text
-            }
-            else {
-                tempStory.conflicts.append(mainText.text)
-            }
-        case 14:
-            if tempStory.dramas[0] == "[DRAMA]" {
-                tempStory.dramas[0] = mainText.text
-            }
-            else {
-                tempStory.dramas.append(mainText.text)
-            }
-        case 15:
-            if tempStory.conclusions[0] == "[CONCLUSION]" {
-                tempStory.conclusions[0] = mainText.text
-            }
-            else {
-                tempStory.conclusions.append(mainText.text)
-            }
-        default:
-            typeNo = 0
+        let nullOps = ["[TITLE1]", "[TITLE2]", "[AUTHORS]", "[STYLE1]", "[STYLE2]", "[SETTINGS]", "[HERO1]", "[HERO2]", "[COMP1]", "[COMP2]", "[VILL1]", "[VILL2]", "[CONFLICT]", "[DRAMA]", "[CONCLUSION]"]
+        var curList = self.story.dict.valueForKeyPath(self.storyLabels[self.typeNo]) as! [String]
+        if nullOps.contains(curList[0]) {
+            curList[0] = mainText.text
         }
+        else {
+            curList.append(mainText.text)
+        }
+        self.story.dict.setValue(curList, forKey: self.storyLabels[self.typeNo])
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.saveStory(tempStory)
+        appDelegate.saveStory(story)
         
     }
     

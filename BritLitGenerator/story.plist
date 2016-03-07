@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>setting</key>
+	<array>
+		<string>at a barely recognizable landmark in postapocalyptic Britain</string>
+		<string>in the dark ages</string>
+		<string>in a British colony</string>
+		<string>in the future</string>
+		<string>in a fantasy world</string>
+		<string>in a small English village</string>
+		<string>on the British coast</string>
+		<string>in modern England</string>
+		<string>in New York City</string>
+		<string>in Wales</string>
+		<string>in a location described repetitively in four or more paragraphs</string>
+		<string>in a new world</string>
+		<string>in 19th century London</string>
+		<string>on the Thames</string>
+		<string>in a medieval castle</string>
+		<string>in a stately mansion</string>
+		<string>in a dystopic society</string>
+		<string>in central Europe</string>
+		<string>in a distant land</string>
+		<string>in Scotireland</string>
+	</array>
+	<key>conclusion</key>
+	<array>
+		<string>King Arthur returns to save England in her time of need</string>
+		<string>the wise gods of nature teach everyone a valuable lesson</string>
+		<string>a new ruler took the country&apos;s throne</string>
+		<string>a beautiful woman met a watery grave</string>
+		<string>the reader realizes the children in the story will be teenagers right in time for a massive war or natural disaster</string>
+		<string>the hero&apos;s closest companion set everything right</string>
+		<string>we&apos;ll go no more a-roving</string>
+		<string>they feasted, and they are still feasting today, if they haven&apos;t died</string>
+		<string>the reader has no idea what just happened</string>
+		<string>everyone dies</string>
+		<string>everyone gets married</string>
+		<string>the reader is left vaguely embarrassed and confused</string>
+		<string>the moral could not possibly be made any clearer</string>
+		<string>to the reader&apos;s relief, they finally go to the lighthouse</string>
+		<string>a dark power was overthrown and the common people begin rebuilding</string>
+	</array>
+	<key>drama</key>
+	<array>
+		<string>betrayal</string>
+		<string>someone becoming desperately ill</string>
+		<string>half the characters pretending to be people of the opposite gender and everyone falling in love with each other</string>
+		<string>a mystical message of danger</string>
+		<string>hijinks</string>
+		<string>the protagonist finding a madwoman in the attic</string>
+		<string>the way home being revealed</string>
+		<string>a sweeping romantic gesture</string>
+		<string>a modest proposal</string>
+		<string>a final clue prompting the protagonist to solve the story&apos;s puzzle</string>
+		<string>a chase scene on the ice floes of the Atlantic</string>
+		<string>an epic underwater battle that lasted for hours</string>
+		<string>the protagonist realizing the error of their ways and accepting fault</string>
+		<string>the protagonist dying and being resurrected</string>
+		<string>a tragic end to a love story</string>
+		<string>lengthy preaching through the characters</string>
+		<string>the brutal demise of the protagonist&apos;s dreams</string>
+		<string>the characters meeting the goal of their quest and finding it wasn&apos;t worth it after all</string>
+		<string>the characters ignoring their responsibilities and all the heavy-handed foreshadowing</string>
+		<string>the death of God</string>
+	</array>
+	<key>conflict</key>
+	<array>
+		<string>unrequited love</string>
+		<string>laziness</string>
+		<string>outright lies</string>
+		<string>a miscommunication</string>
+		<string>a cow creamer</string>
+		<string>responsibility</string>
+		<string>morals</string>
+		<string>revenge</string>
+		<string>their respective emotional states (read: angst)</string>
+		<string>their uncertainty about whether or not to go to the lighthouse (they should, really)</string>
+		<string>the nature of humanity</string>
+		<string>insanity</string>
+		<string>pride, prejudice, and petty sexual tension</string>
+		<string>class divisions</string>
+	</array>
+	<key>vill2</key>
+	<array>
+		<string>was actually on the protagonist&apos;s side</string>
+		<string>was a complicated take on an old British/Scandinavian mythical figure</string>
+		<string>cursed the protagonist</string>
+		<string>was elusive yet impossible to avoid</string>
+		<string>represented pure evil</string>
+		<string>probably was a better person than the protagonist</string>
+		<string>was so very angsty</string>
+		<string>was physically repulsive</string>
+		<string>was only alive because of the protagonist</string>
+		<string>passed judgement on the protagonist</string>
+		<string>had questionable motives</string>
+		<string>would be a good person in different circumstances</string>
+		<string>was insane</string>
+		<string>was naïve</string>
+		<string>was horribly selfish</string>
+	</array>
+	<key>vill1</key>
+	<array>
+		<string>an alien overlord</string>
+		<string>a forgotten and restless Celtic god</string>
+		<string>a blackmailer</string>
+		<string>a debt collector</string>
+		<string>one of their relatives</string>
+		<string>a wild goose</string>
+		<string>an ancient legend apparently come to life</string>
+		<string>a domineering dictator</string>
+		<string>a morally corrupt, power-hungry relative</string>
+		<string>the world</string>
+		<string>an elitist aristocrat</string>
+		<string>a reciporical character</string>
+		<string>their terrifying, overbearing government</string>
+		<string>a sea monster</string>
+		<string>a dragon</string>
+		<string>God</string>
+		<string>the church</string>
+		<string>a poorly defined or symbolic force</string>
+		<string>a rival for the love interest</string>
+	</array>
+	<key>comp2</key>
+	<array>
+		<string>was overbearing and selfish but well-meaning</string>
+		<string>was not in love with the protagonist, though everyone assumes the opposite</string>
+		<string>was loyal to the end</string>
+		<string>was a little bit crazy</string>
+		<string>was secretly in love with the protagonist</string>
+		<string>was far more intelligent than anyone else in the story, not that the other characters always listen</string>
+		<string>was less intelligent than the protagonist but perhaps more intelligent than most readers assume</string>
+		<string>had terrible matchmaking skills</string>
+		<string>served as the voice of reason</string>
+		<string>had ambiguos morals</string>
+		<string>was a gender and/or racial stereotype</string>
+		<string>was destined to die symbolically</string>
+	</array>
+	<key>comp1</key>
+	<array>
+		<string>Merlin or a Merlin substitute</string>
+		<string>representatives of all the nations of the world, including their best friend,</string>
+		<string>a loyal servant</string>
+		<string>several friends, to say nothing of the dog,</string>
+		<string>their deeply felt angst</string>
+		<string>God</string>
+		<string>an eclectic group of strangers</string>
+		<string>their best friend</string>
+		<string>their makeout buddy</string>
+		<string>their spouse/betrothed</string>
+		<string>a blatantly symbolic companion</string>
+		<string>a replacement for their dead parents</string>
+	</array>
+	<key>hero2</key>
+	<array>
+		<string>was shipped off to an isolated location</string>
+		<string>was expecting to inherit a great deal of money</string>
+		<string>had some minor but overemphasized flaw, such as an exaggerated accent</string>
+		<string>had a nonspecific Victorian-era working class job that may or may not be romanticized</string>
+		<string>had a nonspecific media job</string>
+		<string>was happily engaged</string>
+		<string>was facing an unwanted marriage</string>
+		<string>was angsty</string>
+		<string>was in perpetual mourning</string>
+		<string>spoke floridly and at length</string>
+		<string>was a Christ figure</string>
+		<string>had a self-destructive nature</string>
+		<string>was pursuing a noble goal</string>
+		<string>was chivalrous</string>
+		<string>preached for the author</string>
+		<string>was supposed to be ironic</string>
+		<string>had an Oedipus complex</string>
+	</array>
+	<key>hero1</key>
+	<array>
+		<string>a King Arthur substitute</string>
+		<string>a young layabout</string>
+		<string>a governess</string>
+		<string>an orphan</string>
+		<string>a Byronic hero</string>
+		<string>a juste knight</string>
+		<string>an author insert</string>
+		<string>a spoiled nobleman</string>
+		<string>a morally superior person</string>
+		<string>a victim of circumstance</string>
+		<string>a stubborn woman</string>
+		<string>a fair maiden</string>
+		<string>an angsty youth</string>
+		<string>a canny detective</string>
+	</array>
+	<key>style2</key>
+	<array>
+		<string>red herrings</string>
+		<string>self-deprecating humor</string>
+		<string>angst</string>
+		<string>irony</string>
+		<string>metaphors</string>
+		<string>symbols</string>
+		<string>allusions</string>
+		<string>alliteration</string>
+		<string>double entendres and puns</string>
+		<string>euphemisms and innuendo</string>
+		<string>imagery</string>
+		<string>foreshadowing</string>
+	</array>
+	<key>style1</key>
+	<array>
+		<string>Old French</string>
+		<string>an exaggerated formal style</string>
+		<string>casual first-person</string>
+		<string>stream of consciousness</string>
+		<string>Old English</string>
+		<string>middle English</string>
+		<string>Elizabethan English</string>
+		<string>iambic pentameter</string>
+		<string>blunt language</string>
+		<string>free verse</string>
+		<string>Newspeak</string>
+		<string>modern English</string>
+	</array>
+	<key>author</key>
+	<array>
+		<string>a forgotten bard</string>
+		<string>a young and promising author</string>
+		<string>an established author</string>
+		<string>a Brit who wants to be American</string>
+		<string>an American who wants to be British</string>
+		<string>someone who has never left London</string>
+		<string>someone who grew up in a British colony</string>
+		<string>a former adventurer</string>
+		<string>some doctor no one has heard of</string>
+		<string>a wealthy lord</string>
+		<string>a scholar</string>
+		<string>a bored but brilliant housewife</string>
+	</array>
+	<key>title2</key>
+	<array>
+		<string>Heights</string>
+		<string>Antiquary</string>
+		<string>Expectations</string>
+		<string>Jeeves</string>
+		<string>Epic</string>
+		<string>Christmas in Wales</string>
+		<string>Tea</string>
+		<string>Chamber of Secrets</string>
+		<string>Prisoner of Your Title</string>
+		<string>Prince of Denmark</string>
+		<string>Lighthouse</string>
+		<string>Orwellian Tale</string>
+		<string>Monster</string>
+		<string>Angst</string>
+		<string>Prejudice</string>
+	</array>
+	<key>title1</key>
+	<array>
+		<string>Wuthering</string>
+		<string>Lord of the</string>
+		<string>Ghost Stories of a(n)</string>
+		<string>Bleak</string>
+		<string>Right Ho,</string>
+		<string>A Midsummer Night&apos;s</string>
+		<string>Pride and</string>
+		<string>Frankenstein&apos;s</string>
+		<string>Hamlet:</string>
+		<string>Harry Potter and the</string>
+		<string>A Child&apos;s</string>
+		<string>To the</string>
+		<string>1984: A(n)</string>
+		<string>A Cup of</string>
+		<string>Beowulf: A(n)</string>
+	</array>
+</dict>
+</plist>
