@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3C55B631C58218400E4FBC4 /* NoStoryboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B621C58218400E4FBC4 /* NoStoryboardViewController.swift */; };
+		F3C55B631C58218400E4FBC4 /* RandomStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B621C58218400E4FBC4 /* RandomStoryViewController.swift */; };
 		F3C55B651C5821A000E4FBC4 /* StoryBits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B641C5821A000E4FBC4 /* StoryBits.swift */; };
 		F3C55B671C5821BF00E4FBC4 /* AddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */; };
 		F3C55B691C5821E600E4FBC4 /* ChooseAddTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */; };
@@ -31,7 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F3C55B621C58218400E4FBC4 /* NoStoryboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoStoryboardViewController.swift; sourceTree = "<group>"; };
+		F3C55B621C58218400E4FBC4 /* RandomStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomStoryViewController.swift; sourceTree = "<group>"; };
 		F3C55B641C5821A000E4FBC4 /* StoryBits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBits.swift; sourceTree = "<group>"; };
 		F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDataViewController.swift; sourceTree = "<group>"; };
 		F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAddTypeViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			children = (
 				F3F52E331C485FD50072A857 /* AppDelegate.swift */,
 				F3CDB6381C7C46AA00D1FFC5 /* DeleteViewController.swift */,
-				F3C55B621C58218400E4FBC4 /* NoStoryboardViewController.swift */,
+				F3C55B621C58218400E4FBC4 /* RandomStoryViewController.swift */,
 				F3C55B641C5821A000E4FBC4 /* StoryBits.swift */,
 				F3C55B661C5821BF00E4FBC4 /* AddDataViewController.swift */,
 				F3C55B681C5821E600E4FBC4 /* ChooseAddTypeViewController.swift */,
@@ -216,7 +216,7 @@
 				F3C55B691C5821E600E4FBC4 /* ChooseAddTypeViewController.swift in Sources */,
 				F3CDB6391C7C46AA00D1FFC5 /* DeleteViewController.swift in Sources */,
 				F3C55B651C5821A000E4FBC4 /* StoryBits.swift in Sources */,
-				F3C55B631C58218400E4FBC4 /* NoStoryboardViewController.swift in Sources */,
+				F3C55B631C58218400E4FBC4 /* RandomStoryViewController.swift in Sources */,
 				F3F52E341C485FD50072A857 /* AppDelegate.swift in Sources */,
 				F3C55B671C5821BF00E4FBC4 /* AddDataViewController.swift in Sources */,
 			);

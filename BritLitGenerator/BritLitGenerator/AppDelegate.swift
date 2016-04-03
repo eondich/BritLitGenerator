@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var testStory: StoryBits?
     
-    var noStoryboardViewController: NoStoryboardViewController?
+    var randomStoryViewController: RandomStoryViewController?
     var addDataViewController: AddDataViewController?
     var deleteViewController: DeleteViewController?
     
@@ -30,26 +30,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up view controllers that will appear in tabs
         
         // Main view controller where random stories are generated
-        self.noStoryboardViewController = NoStoryboardViewController()
-        let mainNavigationController = UINavigationController(rootViewController: self.noStoryboardViewController!)
+        self.randomStoryViewController = RandomStoryViewController()
+        let mainNavigationController = UINavigationController(rootViewController: self.randomStoryViewController!)
         mainNavigationController.tabBarItem = UITabBarItem(title: "Get a story", image: UIImage(named: "dice"), tag: 0)
         
         // View controller for adding data
         self.addDataViewController = AddDataViewController()
         self.addDataViewController?.typeNo = 0
-        let addNavigationController = UINavigationController(rootViewController: self.addDataViewController!)
-        addNavigationController.tabBarItem = UITabBarItem(title: "Make a story", image: UIImage(named: "pen"), tag: 0)
+        let editNavigationController = UINavigationController(rootViewController: self.addDataViewController!)
+        editNavigationController.tabBarItem = UITabBarItem(title: "Edit", image: UIImage(named: "pen"), tag: 0)
         
         // View controller for deleting data
-        self.deleteViewController = DeleteViewController()
-        let deleteNavigationController = UINavigationController(rootViewController: self.deleteViewController!)
-        deleteNavigationController.tabBarItem = UITabBarItem(title: "Delete data", image: UIImage(named: "delete"), tag: 0)
+//        self.deleteViewController = DeleteViewController()
+//        let deleteNavigationController = UINavigationController(rootViewController: self.deleteViewController!)
+//        deleteNavigationController.tabBarItem = UITabBarItem(title: "Delete data", image: UIImage(named: "delete"), tag: 0)
         
         // Images from https://icons8.com/
         
         // Set up tab bar controller and set as default
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mainNavigationController, addNavigationController, deleteNavigationController]
+        tabBarController.viewControllers = [mainNavigationController, editNavigationController]
         let startupViewController = tabBarController
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

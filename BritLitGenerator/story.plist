@@ -4,6 +4,8 @@
 <dict>
 	<key>setting</key>
 	<array>
+		<string>on a deserted island</string>
+		<string>in Oxford</string>
 		<string>at a barely recognizable landmark in postapocalyptic Britain</string>
 		<string>in the dark ages</string>
 		<string>in a British colony</string>
@@ -27,6 +29,10 @@
 	</array>
 	<key>conclusion</key>
 	<array>
+		<string>the children in the story grow up</string>
+		<string>the central couple is parted forever</string>
+		<string>a new king is crowned</string>
+		<string>everyone converts to Christianity</string>
 		<string>King Arthur returns to save England in her time of need</string>
 		<string>the wise gods of nature teach everyone a valuable lesson</string>
 		<string>a new ruler took the country&apos;s throne</string>
@@ -45,6 +51,10 @@
 	</array>
 	<key>drama</key>
 	<array>
+		<string>one of the characters realizing, perhaps too late, that true love has been in front of them all along</string>
+		<string>magic dictating the course of politics</string>
+		<string>a war between two great nations</string>
+		<string>a sweeping coup</string>
 		<string>betrayal</string>
 		<string>someone becoming desperately ill</string>
 		<string>half the characters pretending to be people of the opposite gender and everyone falling in love with each other</string>
@@ -68,6 +78,10 @@
 	</array>
 	<key>conflict</key>
 	<array>
+		<string>a break up</string>
+		<string>resistance to inevitable social and political change</string>
+		<string>an impending marriage</string>
+		<string>religion</string>
 		<string>unrequited love</string>
 		<string>laziness</string>
 		<string>outright lies</string>
@@ -85,6 +99,8 @@
 	</array>
 	<key>vill2</key>
 	<array>
+		<string>was remarkably beautiful</string>
+		<string>was secretly a mythical creature</string>
 		<string>was actually on the protagonist&apos;s side</string>
 		<string>was a complicated take on an old British/Scandinavian mythical figure</string>
 		<string>cursed the protagonist</string>
@@ -103,12 +119,14 @@
 	</array>
 	<key>vill1</key>
 	<array>
+		<string>a significant other</string>
+		<string>an evil queen</string>
 		<string>an alien overlord</string>
 		<string>a forgotten and restless Celtic god</string>
 		<string>a blackmailer</string>
 		<string>a debt collector</string>
-		<string>one of their relatives</string>
-		<string>a wild goose</string>
+		<string>a thoughtless and irritating relative</string>
+		<string>a wild swan</string>
 		<string>an ancient legend apparently come to life</string>
 		<string>a domineering dictator</string>
 		<string>a morally corrupt, power-hungry relative</string>
@@ -125,6 +143,9 @@
 	</array>
 	<key>comp2</key>
 	<array>
+		<string>really liked jam</string>
+		<string>the protagonist was trying to fix in some way</string>
+		<string>could travel through different dimensions</string>
 		<string>was overbearing and selfish but well-meaning</string>
 		<string>was not in love with the protagonist, though everyone assumes the opposite</string>
 		<string>was loyal to the end</string>
@@ -140,6 +161,11 @@
 	</array>
 	<key>comp1</key>
 	<array>
+		<string>their eccentric employee</string>
+		<string>a child</string>
+		<string>their mentor</string>
+		<string>Jesus</string>
+		<string>their sibling</string>
 		<string>Merlin or a Merlin substitute</string>
 		<string>representatives of all the nations of the world, including their best friend,</string>
 		<string>a loyal servant</string>
@@ -155,6 +181,8 @@
 	</array>
 	<key>hero2</key>
 	<array>
+		<string>may have had magical/holy powers or may have just been really good at manipulating people and events</string>
+		<string>secretly had magical powers</string>
 		<string>was shipped off to an isolated location</string>
 		<string>was expecting to inherit a great deal of money</string>
 		<string>had some minor but overemphasized flaw, such as an exaggerated accent</string>
@@ -175,6 +203,10 @@
 	</array>
 	<key>hero1</key>
 	<array>
+		<string>a person with a boring, possibly demeaning job</string>
+		<string>an evacuee from London</string>
+		<string>an apparently normal child</string>
+		<string>a potential heir to the throne</string>
 		<string>a King Arthur substitute</string>
 		<string>a young layabout</string>
 		<string>a governess</string>
@@ -192,6 +224,7 @@
 	</array>
 	<key>style2</key>
 	<array>
+		<string>illustrations</string>
 		<string>red herrings</string>
 		<string>self-deprecating humor</string>
 		<string>angst</string>
@@ -255,6 +288,7 @@
 	</array>
 	<key>title1</key>
 	<array>
+		<string>Brave New</string>
 		<string>Wuthering</string>
 		<string>Lord of the</string>
 		<string>Ghost Stories of a(n)</string>

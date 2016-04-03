@@ -1,5 +1,5 @@
 //
-//  NoStoryboardViewController.swift
+//  RandomStoryViewController.swift
 //  The Wonderific British Literature Generator for the Common Fluckadrift
 //
 //  Created by Elena Ondich on 1/6/16 with help from Jeffrey Ondich.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class NoStoryboardViewController: UIViewController {
+class RandomStoryViewController: UIViewController {
     // To do: Make it at all pretty
     var storyTitle: UITextView!
     var storyPlot: UITextView!
@@ -18,6 +18,8 @@ class NoStoryboardViewController: UIViewController {
     var dataButton: UIButton!
     var buttonOps: [String]!
     var story: StoryBits!
+    var storyPieceSwitch: UISwitch!
+    var fontColor: UIColor!
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -27,8 +29,8 @@ class NoStoryboardViewController: UIViewController {
         self.navigationItem.title = "Your story"
         self.view.backgroundColor = UIColor.whiteColor()
         let font = UIFont.systemFontOfSize(14.0)
-        let titleColor = UIColor(red: 0.63, green: 0.73, blue: 0.93, alpha: 1.0)
-        let fontColor = UIColor(red: 0.05, green: 0.1, blue: 0.05, alpha: 1.0)
+        let titleColor = UIColor.whiteColor()
+        self.fontColor = UIColor(red: 0.05, green: 0.1, blue: 0.05, alpha: 1.0)
         let backgroundColor = UIColor(red: 0.75, green: 0.5, blue: 0.64, alpha: 1.0)// red: 0.7, green: 0.54, blue: 0.67, alpha: 1.0)//red: 0.55, green: 0.8, blue: 0.45, alpha: 1.0)
         let buttonColor = UIColor(red: 0.6, green: 0.7, blue: 0.9, alpha: 1.0)
         
@@ -73,6 +75,13 @@ class NoStoryboardViewController: UIViewController {
         self.button.addTarget(self, action: "handleHitMeButton", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(self.button)
         
+        self.storyPieceSwitch = UISwitch(frame: CGRectMake(120, 240, 0, 0))
+        self.storyPieceSwitch.translatesAutoresizingMaskIntoConstraints = false
+        self.storyPieceSwitch.on = false
+        self.storyPieceSwitch.setOn(false, animated: true)
+        self.storyPieceSwitch.addTarget(self, action: "showPieces:", forControlEvents: .ValueChanged)
+        self.view.addSubview(storyPieceSwitch)
+        
         // A list of text options for the button that gives the user a new story
         self.buttonOps = [" Hit me, knave! ", " Hit me, rogue! ", " Hit me, foulmouthed braggard! ", " Hit me, though I am sore afraid! ", " Hit me, oh light of my soul! "]
         
@@ -92,17 +101,20 @@ class NoStoryboardViewController: UIViewController {
         let views: [String:AnyObject] = ["title":self.storyTitle,
             "plot":self.storyPlot,
             "button":self.button,
+            "switch":self.storyPieceSwitch,
             "leftButtonPad":leftButtonPad,
             "rightButtonPad":rightButtonPad,
             "topLayoutGuide":self.topLayoutGuide,
             "bottomLayoutGuide":self.bottomLayoutGuide]
         
-        let metrics: [String:Float] = ["margin":20, "titleHeight":43, "authorHeight":30, "styleHeight":43]
+        let metrics: [String:Float] = ["margin":20, "titleHeight":43, "buttonHeight":37, "styleHeight":43, "switchMargin":30]
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[title]-margin-|", options: [], metrics: metrics, views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-margin-[plot]-margin-|", options: [], metrics: metrics, views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[leftButtonPad][button][rightButtonPad(==leftButtonPad)]|", options: [], metrics: metrics, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topLayoutGuide]-margin-[title(titleHeight)][plot]-margin-[button]-margin-[bottomLayoutGuide]", options: [], metrics: metrics, views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topLayoutGuide]-margin-[title(titleHeight)][plot]-margin-[button(buttonHeight)]-margin-[bottomLayoutGuide]", options: [], metrics: metrics, views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[switch]-switchMargin-|", options: [], metrics: metrics, views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[switch]-switchMargin-[button]-margin-[bottomLayoutGuide]", options: [], metrics: metrics, views: views))
     }
     
     // MARK: Button handling
@@ -118,6 +130,15 @@ class NoStoryboardViewController: UIViewController {
         // Populate the title, author, style, and plot boxes with the values that were randomly chosen by getStory()
         storyTitle.text = "\(story.title1) \(story.title2)"
         storyPlot.text = "Written by \(story.author)\r\rTold in \(story.style1) chock full of \(story.style2)\r\rOnce upon a time \(story.setting), there was \(story.hero1) who \(story.hero2), accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1), who \(story.villain2), because of \(story.conflict).  The adventure culminated in \(story.drama).  In the end, \(story.conclusion)."
+    }
+    
+    func showPieces(sender:UISwitch!) {
+        if (sender.on == true) {
+            storyPlot.textColor = UIColor.whiteColor()
+        }
+        else {
+            storyPlot.textColor = self.fontColor
+        }
     }
     
     // MARK: NSCoding
