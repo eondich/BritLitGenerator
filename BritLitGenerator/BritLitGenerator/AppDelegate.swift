@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var testStory: StoryBits?
     
     var randomStoryViewController: RandomStoryViewController?
-    var addDataViewController: AddDataViewController?
-    var deleteViewController: DeleteViewController?
+    var editViewController: EditViewController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -34,22 +33,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainNavigationController = UINavigationController(rootViewController: self.randomStoryViewController!)
         mainNavigationController.tabBarItem = UITabBarItem(title: "Get a story", image: UIImage(named: "dice"), tag: 0)
         
-        // View controller for adding data
-        self.addDataViewController = AddDataViewController()
-        self.addDataViewController?.typeNo = 0
-        let editNavigationController = UINavigationController(rootViewController: self.addDataViewController!)
+        // View controller for editing data
+        self.editViewController = EditViewController()
+        self.editViewController?.typeNo = 0
+        let editNavigationController = UINavigationController(rootViewController: self.editViewController!)
         editNavigationController.tabBarItem = UITabBarItem(title: "Edit", image: UIImage(named: "pen"), tag: 0)
         
-        // View controller for deleting data
-//        self.deleteViewController = DeleteViewController()
-//        let deleteNavigationController = UINavigationController(rootViewController: self.deleteViewController!)
-//        deleteNavigationController.tabBarItem = UITabBarItem(title: "Delete data", image: UIImage(named: "delete"), tag: 0)
         
         // Images from https://icons8.com/
         
         // Set up tab bar controller and set as default
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [mainNavigationController, editNavigationController]
+        tabBarController.tabBar.tintColor = UIColor(red: 0.8, green: 0.52, blue: 0.0, alpha: 1.0)
         let startupViewController = tabBarController
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

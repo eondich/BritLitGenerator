@@ -1,5 +1,5 @@
 //
-//  AddDataViewController.swift
+//  EditViewController.swift
 //  The Wonderific British Literature Generator for the Common Fluckadrift
 //
 //  Created by Elena Ondich on 1/12/16.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, ChooseTypeControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class EditViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, ChooseTypeControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     // To do: Make more aesthetically pleasing
     var mainText: UITextView!
     var titleText: UIButton!
@@ -39,7 +39,7 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         self.navigationItem.title = "Make your own story"
         
-        // Making sure that newText and typeNo have values-- at this point, every time I create an AddDataViewController I assign values to them, but I don't want to risk them being nil
+        // Making sure that newText and typeNo have values-- at this point, every time I create an EditViewController I assign values to them, but I don't want to risk them being nil
         if newText == nil {
             newText = "For example: (Your entry) Prince of Denmark"
         }
@@ -52,16 +52,25 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         self.storyLabels = ["title1", "title2", "author", "style1", "style2", "setting", "hero1", "hero2", "comp1", "comp2", "vill1", "vill2", "conflict", "drama", "conclusion"]
         
+//        self.navigationItem.title = "Your story"
+//        self.view.backgroundColor = UIColor(red: 0.2, green: 0.33, blue: 0.0, alpha: 1.0)
+//        self.font = UIFont.systemFontOfSize(14.0)
+//        self.titleColor = UIColor(red: 0.8, green: 0.52, blue: 0.0, alpha: 1.0)
+//        self.fontColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
+//        self.backgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.9, alpha: 1.0)
+//        let buttonColor = UIColor(red: 0.55, green: 0.2, blue: 0.0, alpha: 1.0)
+//        self.titleFont = UIFont.systemFontOfSize(18.0)
+        
         // Set view defaults
-        backgroundColor = UIColor(red: 0.87, green: 0.89, blue: 0.93, alpha: 1.0)
-        self.tableBackgroundColor = UIColor.whiteColor()
-        let buttonColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
-        let textColor = UIColor(red: 0.75, green: 0.31, blue: 0.52, alpha: 1.0)// red: 0.4, green: 0.75, blue: 0.55, alpha: 1.0)
+        backgroundColor = UIColor(red: 0.2, green: 0.33, blue: 0.0, alpha: 1.0)
+        self.tableBackgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.9, alpha: 1.0)
+        let buttonColor = UIColor(red: 0.55, green: 0.2, blue: 0.0, alpha: 1.0)
+        let textColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
         let borderColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
         self.view.backgroundColor = backgroundColor
         let font = UIFont.systemFontOfSize(14.0)
         let smallFont = UIFont.systemFontOfSize(13.0)
-        let expTextColor = UIColor.blackColor()
+        let expTextColor = UIColor(red: 0.8, green: 0.52, blue: 0.0, alpha: 1.0)
         
         // Build the main text box where new data options are entered
         self.mainText = UITextView()
@@ -78,8 +87,8 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         // Add a title to the page so the user knows what type of phrase they're adding to the system.  Mostly this can just be newText, but a couple of them need a bit more context so the user gets the grammar right
         self.titleText = UIButton()
         self.titleText.translatesAutoresizingMaskIntoConstraints = false
-        self.titleText.backgroundColor = buttonColor
-        self.titleText.setTitleColor(textColor, forState: .Normal)
+        self.titleText.backgroundColor = expTextColor
+        self.titleText.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.titleText.layer.borderColor = borderColor.CGColor
         self.titleText.layer.borderWidth = 1
         self.titleText.layer.cornerRadius = 8
@@ -95,7 +104,7 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.complete = UIButton()
         self.complete.translatesAutoresizingMaskIntoConstraints = false
         self.complete.backgroundColor = buttonColor
-        self.complete.setTitleColor(textColor, forState: .Normal)
+        self.complete.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.complete.layer.borderColor = borderColor.CGColor
         self.complete.layer.borderWidth = 1
         self.complete.layer.cornerRadius = 8
@@ -189,12 +198,6 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         
     }
     
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if complete == sender {
-    
-    }
-    }*/
-    
     // MARK: Button handling
     // Executed when the save button is tapped
     func saveQuit() {
@@ -246,7 +249,7 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     // If a row is selected, displays an alert.  If delete is selected, deletes the data displayed in the selected row
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let alert = UIAlertController(title: "Hold on-", message: "Are you sure you want to delete this data?", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Hold on-", message: "Do you want to delete this story piece?", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: {action in self.deleteData(indexPath.row) } )
         alert.addAction(cancelAction)
@@ -301,17 +304,8 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
     func typeWasSelected(newTypeNo: Int, newTypeText: String) {
         self.typeNo = newTypeNo
         self.newText = newTypeText
-//        setText()
-        
         self.loadData()
-//        let sameTextList = [0, 1, 2, 3, 4, 7, 9, 11, 12, 13, 14]
-//        self.typeNo = newTypeNo
-//        if sameTextList.contains(newTypeNo) {
-//            self.titleText.setTitle(newTypeText, forState: .Normal)
-//        }
-        //else {
         setText()
-        //}
         self.deleteOptions = self.story.dict.valueForKeyPath(self.storyLabels[self.typeNo]) as! [String]
         self.tableView.reloadData()
     }
@@ -336,13 +330,15 @@ class AddDataViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.deleteOptions = self.story.dict.valueForKeyPath(self.storyLabels[self.typeNo]) as! [String]
         self.tableView.reloadData()
         self.toast.textColor = UIColor.blackColor()
-        // Doesn't quite do the job...
-        UIView.animateWithDuration(
-            4.0, delay: 0.1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                
-                self.toast.alpha = 0.0
-                
-            }, completion: nil)
+        self.toast.hidden = false
+        UIView.transitionWithView(self.toast, duration: 2.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {self.toast.hidden = false}, completion: nil)
+        UIView.transitionWithView(self.toast, duration: 4.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {self.toast.hidden = true}, completion: nil)
+//        UIView.animateWithDuration(
+//            4.0, delay: 0.1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+//                
+//                self.toast.alpha = 0.0
+//                
+//            }, completion: nil)
     }
     
     

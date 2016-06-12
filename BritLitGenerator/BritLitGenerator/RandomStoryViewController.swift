@@ -20,6 +20,11 @@ class RandomStoryViewController: UIViewController {
     var story: StoryBits!
     var storyPieceSwitch: UISwitch!
     var fontColor: UIColor!
+    var font: UIFont!
+    var backgroundColor: UIColor!
+    var titleFont: UIFont!
+    var titleColor: UIColor!
+    var highlightColor: UIColor!
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -27,12 +32,14 @@ class RandomStoryViewController: UIViewController {
         
         // View defaults
         self.navigationItem.title = "Your story"
-        self.view.backgroundColor = UIColor.whiteColor()
-        let font = UIFont.systemFontOfSize(14.0)
-        let titleColor = UIColor.whiteColor()
-        self.fontColor = UIColor(red: 0.05, green: 0.1, blue: 0.05, alpha: 1.0)
-        let backgroundColor = UIColor(red: 0.75, green: 0.5, blue: 0.64, alpha: 1.0)// red: 0.7, green: 0.54, blue: 0.67, alpha: 1.0)//red: 0.55, green: 0.8, blue: 0.45, alpha: 1.0)
-        let buttonColor = UIColor(red: 0.6, green: 0.7, blue: 0.9, alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: 0.2, green: 0.33, blue: 0.0, alpha: 1.0)
+        self.font = UIFont.systemFontOfSize(14.0)
+        self.titleColor = UIColor(red: 0.8, green: 0.52, blue: 0.0, alpha: 1.0)
+        self.fontColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.9, alpha: 1.0)
+        let buttonColor = UIColor(red: 0.55, green: 0.2, blue: 0.0, alpha: 1.0)
+        self.titleFont = UIFont.systemFontOfSize(18.0)
+        self.highlightColor = UIColor(red: 0.12, green: 0.47, blue: 0.69, alpha: 1.0)
         
         // Create a new StoryBits object and load the lists of options for pieces of the story
         story = StoryBits()
@@ -45,8 +52,7 @@ class RandomStoryViewController: UIViewController {
         self.storyTitle = UITextView()
         self.storyTitle.translatesAutoresizingMaskIntoConstraints = false
         self.storyTitle.backgroundColor = backgroundColor
-        self.storyTitle.textColor = UIColor.whiteColor()
-        self.storyTitle.font = UIFont.systemFontOfSize(18.0)
+        self.storyTitle.font = self.titleFont
         self.storyTitle.textColor = titleColor
         self.storyTitle.text = "\(story.title1) \(story.title2)"
         self.storyTitle.textAlignment = .Center
@@ -58,9 +64,8 @@ class RandomStoryViewController: UIViewController {
         self.storyPlot = UITextView()
         self.storyPlot.translatesAutoresizingMaskIntoConstraints = false
         self.storyPlot.backgroundColor = backgroundColor
-        self.storyPlot.font = font
-        self.storyPlot.textColor = fontColor
-        self.storyPlot.text = "Written by \(story.author)\r\rTold in \(story.style1) chock full of \(story.style2)\r\rOnce upon a time \(story.setting), there was \(story.hero1) who \(story.hero2), accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1), who \(story.villain2), because of \(story.conflict).  The adventure culminated in \(story.drama).  In the end, \(story.conclusion)."
+        self.storyPlot.textColor = self.fontColor
+        formatPlot(NSMutableAttributedString(string: "Written by|\(story.author)\r\rTold in|\(story.style1) chock full of|\(story.style2)\r\rOnce upon a time|\(story.setting), there was|\(story.hero1) who|\(story.hero2), accompanied by|\(story.companion1) who[\(story.companion2).  They came into conflict with|\(story.villain1), who]\(story.villain2), because of|\(story.conflict).  The adventure culminated in|\(story.drama).  In the end,|\(story.conclusion).|"))
         self.storyPlot.editable = false
         self.view.addSubview(self.storyPlot)
         
@@ -129,16 +134,92 @@ class RandomStoryViewController: UIViewController {
         story.getStory()
         // Populate the title, author, style, and plot boxes with the values that were randomly chosen by getStory()
         storyTitle.text = "\(story.title1) \(story.title2)"
-        storyPlot.text = "Written by \(story.author)\r\rTold in \(story.style1) chock full of \(story.style2)\r\rOnce upon a time \(story.setting), there was \(story.hero1) who \(story.hero2), accompanied by \(story.companion1) who \(story.companion2).  They came into conflict with \(story.villain1), who \(story.villain2), because of \(story.conflict).  The adventure culminated in \(story.drama).  In the end, \(story.conclusion)."
+        storyPlot.attributedText = NSAttributedString(string:"Written by|\(story.author)\r\rTold in|\(story.style1) chock full of|\(story.style2)\r\rOnce upon a time|\(story.setting), there was|\(story.hero1) who|\(story.hero2), accompanied by|\(story.companion1) who[\(story.companion2).  They came into conflict with|\(story.villain1), who]\(story.villain2), because of|\(story.conflict).  The adventure culminated in|\(story.drama).  In the end,|\(story.conclusion).|")
+        showPieces(self.storyPieceSwitch)
     }
     
     func showPieces(sender:UISwitch!) {
         if (sender.on == true) {
-            storyPlot.textColor = UIColor.whiteColor()
+            let plot = self.storyPlot.attributedText.string
+            var mutablePlot = NSMutableAttributedString(string: plot)
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "Written by|", endSubstring: "Told in|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "Told in|", endSubstring: "chock full of|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "chock full of|", endSubstring: "Once upon a time|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "Once upon a time|", endSubstring: ", there was|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: ", there was|", endSubstring: "who|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "who|", endSubstring: ", accompanied by|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "accompanied by|", endSubstring: "who[")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: "who[", endSubstring: ".  They came into conflict with|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: ".  They came into conflict with|", endSubstring: ", who]")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: ", who]", endSubstring: ", because of|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: ", because of|", endSubstring: ".  The adventure culminated in|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: ".  The adventure culminated in|", endSubstring: ".  In the end,|")
+            mutablePlot = changeSubstringColor(mutablePlot, startSubstring: ".  In the end,|", endSubstring: ".|")
+            mutablePlot.addAttribute(NSFontAttributeName, value: self.font, range: NSMakeRange(0, mutablePlot.length))
+            formatPlot(mutablePlot)
+            let title = NSMutableAttributedString(string: self.storyTitle.attributedText.string, attributes: [NSFontAttributeName: self.titleFont, NSForegroundColorAttributeName: self.highlightColor])
+            let midIndex = title.string.startIndex.distanceTo(self.story.title1.endIndex)
+            title.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, midIndex))
+            title.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(midIndex + 1, title.length - midIndex - 1))
+            self.storyTitle.attributedText = title
+            self.storyTitle.textAlignment = .Center
         }
         else {
-            storyPlot.textColor = self.fontColor
+            self.storyPlot.textColor = self.fontColor
+            formatPlot(NSMutableAttributedString(string: self.storyPlot.attributedText.string))
+            let titleString = self.storyTitle.attributedText.string
+            let title = NSMutableAttributedString(string: titleString, attributes: [NSFontAttributeName: self.titleFont])
+            self.storyTitle.attributedText = formatTitle(title, titleColor: self.titleColor)
+            self.storyTitle.textAlignment = .Center
         }
+    }
+    
+    func formatPlot(var mutablePlot: NSMutableAttributedString) {
+        mutablePlot = addWhitespace("Written by|", plot: mutablePlot)
+        mutablePlot = addWhitespace("Told in|", plot: mutablePlot)
+        mutablePlot = addWhitespace("chock full of|", plot: mutablePlot)
+        mutablePlot = addWhitespace("Once upon a time|", plot: mutablePlot)
+        mutablePlot = addWhitespace("there was|", plot: mutablePlot)
+        mutablePlot = addWhitespace("who|", plot: mutablePlot)
+        mutablePlot = addWhitespace("accompanied by|", plot: mutablePlot)
+        mutablePlot = addWhitespace("who[", plot: mutablePlot)
+        mutablePlot = addWhitespace(".  They came into conflict with|", plot: mutablePlot)
+        mutablePlot = addWhitespace("who]", plot: mutablePlot)
+        mutablePlot = addWhitespace(", because of|", plot: mutablePlot)
+        mutablePlot = addWhitespace(".  The adventure culminated in|", plot: mutablePlot)
+        mutablePlot = addWhitespace(".  In the end,|", plot: mutablePlot)
+        mutablePlot = addWhitespace(".|", plot: mutablePlot)
+        mutablePlot.addAttribute(NSFontAttributeName, value: self.font, range: NSMakeRange(0, mutablePlot.length))
+        self.storyPlot.attributedText = mutablePlot
+    }
+    
+//    func formatTitle(newTitleColor: UIColor) {
+//        let title = NSMutableAttributedString(string: self.storyTitle.attributedText.string, attributes: [NSFontAttributeName: self.titleFont, NSForegroundColorAttributeName: newTitleColor])
+//        self.storyTitle.attributedText = title
+//    }
+    func formatTitle(fullString: NSMutableAttributedString, titleColor: UIColor) -> NSMutableAttributedString {
+        let startIndex = 0
+        let endIndex = fullString.length
+        fullString.addAttribute(NSForegroundColorAttributeName, value: titleColor, range: NSMakeRange((startIndex), (endIndex - startIndex)))
+        return fullString
+    }
+    
+    func addWhitespace(stringToEdit: String, plot: NSMutableAttributedString) -> NSMutableAttributedString {
+        let index = plot.string.startIndex.distanceTo((plot.string.rangeOfString(stringToEdit)?.endIndex)!)
+        plot.addAttribute(NSForegroundColorAttributeName, value: self.backgroundColor, range: NSMakeRange(index - 1, 1))
+        return plot
+    }
+    
+    func changeSubstringColor(var fullString: NSMutableAttributedString, startSubstring: String, endSubstring: String) -> NSMutableAttributedString {
+        let fullStart = fullString.string.startIndex
+        let stringRange = fullString.string.rangeOfString(startSubstring)
+        let startIndex = fullStart.distanceTo(stringRange!.endIndex)
+        let endIndex = fullString.string.startIndex.distanceTo((fullString.string.rangeOfString(endSubstring)?.startIndex)!)
+        fullString = addWhitespace(startSubstring, plot: fullString)
+        fullString = addWhitespace(endSubstring, plot: fullString)
+        fullString.addAttribute(NSForegroundColorAttributeName, value: self.highlightColor, range: NSMakeRange((startIndex), (endIndex - startIndex)))
+        fullString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange((startIndex), (endIndex - startIndex)))
+        return fullString
     }
     
     // MARK: NSCoding
